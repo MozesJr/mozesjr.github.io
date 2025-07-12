@@ -1686,7 +1686,7 @@
                     (0, i.jsx)(o, {}),
                     (0, i.jsxs)("p", {
                       children: [
-                        "I design and code beautiful things, and I love what I do.",
+                        "My name is Mozes Markus Sapari, I am a graduate of the Department of Informatics Engineering, University of Papua. I have over 7 years of experience in Network Engineering, Network Administration, Web Development, and DevOps. Previously worked as an Application Support Engineer at the Money Printing Company of the Republic of Indonesia (PERURI). Currently pursuing my Master's degree in Computer Science at Universitas Gadjah Mada (UGM) to further advance my expertise in technology and innovation.",
                       ],
                     }),
                     (0, i.jsx)("div", {

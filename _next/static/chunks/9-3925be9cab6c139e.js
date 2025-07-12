@@ -1686,7 +1686,7 @@
                     (0, i.jsx)(o, {}),
                     (0, i.jsxs)("p", {
                       children: [
-                        "My Name is Mozes Markus Sapari, I am a graduate of the Department of Informatics Engineering, University of Papua, now I work as an Application Support Engineer (ASE) at the Money Printing Company of the Republic of Indonesia (PERURI), I have experience in the field of Network Engineer, Network Administrator and Web Developer for about 3 years, now I am in the field of DevOps at PERURI.",
+                        "I design and code beautiful things, and I love what I do.",
                       ],
                     }),
                     (0, i.jsx)("div", {

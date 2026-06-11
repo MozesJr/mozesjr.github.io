@@ -6,22 +6,19 @@
     <title>Mozes Markus Sapari — DevOps Engineer & ML Researcher</title>
     <meta
       name="description"
-      content="Portfolio of Mozes Markus Sapari — DevOps Engineer, ML Researcher, Full Stack Developer at UGM"
+      content="Portfolio of Mozes Markus Sapari — DevOps Engineer, ML Researcher, Full Stack Developer, S2 MKOM UGM"
     />
     <meta
       name="keywords"
-      content="DevOps, Machine Learning, UGM, PERURI, MiRAG, Outlier Detection"
+      content="DevOps, Machine Learning, UGM, AM-RAG, Outlier Detection, Docker, Golang, Vue.js"
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-
     <style>
-      /* ===== CSS VARIABLES ===== */
       :root {
         --bg: #050a0e;
         --bg2: #080f14;
@@ -42,8 +39,6 @@
         --glow2: 0 0 60px rgba(0, 255, 179, 0.1);
         --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
-
-      /* ===== RESET & BASE ===== */
       *,
       *::before,
       *::after {
@@ -62,8 +57,6 @@
         line-height: 1.7;
         cursor: none;
       }
-
-      /* ===== CUSTOM CURSOR ===== */
       .cursor {
         position: fixed;
         width: 12px;
@@ -92,15 +85,6 @@
           opacity 0.3s ease;
         transform: translate(-50%, -50%);
       }
-      body:hover .cursor {
-        opacity: 1;
-      }
-      a:hover ~ .cursor,
-      button:hover ~ .cursor {
-        transform: translate(-50%, -50%) scale(2);
-      }
-
-      /* ===== CANVAS BACKGROUND ===== */
       #canvas-bg {
         position: fixed;
         top: 0;
@@ -110,8 +94,6 @@
         z-index: 0;
         opacity: 0.5;
       }
-
-      /* ===== NOISE OVERLAY ===== */
       body::before {
         content: "";
         position: fixed;
@@ -121,8 +103,6 @@
         z-index: 1;
         opacity: 0.4;
       }
-
-      /* ===== LAYOUT ===== */
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -134,8 +114,6 @@
         position: relative;
         z-index: 2;
       }
-
-      /* ===== SCROLLBAR ===== */
       ::-webkit-scrollbar {
         width: 4px;
       }
@@ -146,8 +124,6 @@
         background: var(--accent);
         border-radius: 2px;
       }
-
-      /* ===== HEADER / NAV ===== */
       header {
         position: fixed;
         top: 0;
@@ -209,8 +185,6 @@
       nav a:hover::after {
         width: 100%;
       }
-
-      /* ===== HERO ===== */
       .hero {
         min-height: 100vh;
         display: flex;
@@ -253,12 +227,36 @@
         letter-spacing: 0.02em;
         margin-bottom: 0.5rem;
         animation: fadeInUp 0.8s 0.1s ease both;
+        position: relative;
       }
       .hero-name .accent-line {
         display: block;
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke: 1px rgba(0, 255, 179, 0.4);
         opacity: 0.6;
+      }
+      .hero-name::before,
+      .hero-name::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-family: var(--font-display);
+        font-size: inherit;
+        line-height: 1;
+        opacity: 0;
+      }
+      .hero-name:hover::before {
+        animation: glitch 0.3s step-end 3;
+        opacity: 0.7;
+        color: var(--accent2);
+      }
+      .hero-name:hover::after {
+        animation: glitch 0.3s step-end 3 reverse;
+        opacity: 0.5;
+        color: #ff006e;
       }
       .hero-title {
         font-family: var(--font-mono);
@@ -348,8 +346,6 @@
         border-color: var(--accent);
         transform: translateY(-2px);
       }
-
-      /* Hero Visual */
       .hero-visual {
         position: relative;
         animation: fadeInRight 1s 0.5s ease both;
@@ -432,8 +428,6 @@
         color: var(--text-dim);
         padding-left: 1rem;
       }
-
-      /* Stats row */
       .hero-stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -469,8 +463,6 @@
         letter-spacing: 0.1em;
         margin-top: 0.3rem;
       }
-
-      /* Scroll indicator */
       .scroll-indicator {
         position: absolute;
         bottom: 2rem;
@@ -496,8 +488,6 @@
         text-transform: uppercase;
         writing-mode: vertical-rl;
       }
-
-      /* ===== SECTION COMMON ===== */
       .section {
         padding: 7rem 0;
       }
@@ -532,24 +522,11 @@
         max-width: 500px;
         margin-bottom: 4rem;
       }
-
-      /* ===== ABOUT ===== */
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
         gap: 5rem;
         align-items: start;
-      }
-      .about-photo-wrap {
-        position: relative;
-      }
-      .about-photo {
-        width: 100%;
-        aspect-ratio: 3/4;
-        object-fit: cover;
-        border-radius: 12px;
-        filter: grayscale(20%) contrast(1.1);
-        display: block;
       }
       .about-photo-frame {
         position: relative;
@@ -581,25 +558,6 @@
         position: relative;
         overflow: hidden;
       }
-      .about-photo-placeholder::before {
-        content: "";
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(
-          circle,
-          rgba(0, 255, 179, 0.15),
-          transparent 70%
-        );
-        border-radius: 50%;
-      }
-      .about-photo-placeholder .initials {
-        font-family: var(--font-display);
-        font-size: 6rem;
-        color: rgba(0, 255, 179, 0.4);
-        letter-spacing: 0.05em;
-        z-index: 1;
-      }
       .about-location-tag {
         position: absolute;
         bottom: 1.5rem;
@@ -625,8 +583,6 @@
         border-radius: 50%;
         animation: pulse 2s infinite;
         flex-shrink: 0;
-      }
-      .about-content {
       }
       .about-text {
         font-size: 1rem;
@@ -682,7 +638,7 @@
         border-color: var(--border2);
         background: var(--surface2);
       }
-      .about-info-item .info-label {
+      .info-label {
         font-family: var(--font-mono);
         font-size: 0.65rem;
         color: var(--text-muted);
@@ -690,12 +646,10 @@
         letter-spacing: 0.1em;
         margin-bottom: 0.25rem;
       }
-      .about-info-item .info-val {
+      .info-val {
         font-size: 0.9rem;
         color: var(--text);
       }
-
-      /* ===== EXPERIENCE TIMELINE ===== */
       .timeline {
         position: relative;
         padding-left: 2rem;
@@ -778,8 +732,6 @@
         color: var(--accent2);
         background: rgba(0, 212, 255, 0.05);
       }
-
-      /* ===== RESUME (dual timeline) ===== */
       .resume-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -802,8 +754,6 @@
         height: 1px;
         background: var(--border);
       }
-
-      /* ===== SKILLS ===== */
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -883,8 +833,111 @@
         border-radius: 4px;
         color: var(--text-dim);
       }
-
-      /* ===== RESEARCH HIGHLIGHT ===== */
+      .projects-filter {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .filter-btn {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        padding: 0.4rem 1.1rem;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--text-muted);
+        background: var(--surface);
+        letter-spacing: 0.08em;
+        cursor: none;
+        transition: var(--transition);
+      }
+      .filter-btn.active,
+      .filter-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(0, 255, 179, 0.06);
+      }
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(20px);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .project-card.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .project-card:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      .project-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .project-icon {
+        font-size: 1.5rem;
+      }
+      .project-links {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .project-link {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        transition: var(--transition);
+      }
+      .project-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .project-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .project-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        flex: 1;
+      }
+      .project-lang {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent2);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: auto;
+      }
+      .project-lang::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent2);
+        flex-shrink: 0;
+      }
       .research-card {
         background: linear-gradient(
           135deg,
@@ -947,8 +1000,6 @@
         display: block;
         font-size: 0.85rem;
       }
-
-      /* ===== CONTACT ===== */
       .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
@@ -1064,8 +1115,6 @@
         box-shadow: var(--glow);
         transform: translateY(-2px);
       }
-
-      /* ===== FOOTER ===== */
       footer {
         padding: 3rem 0;
         border-top: 1px solid var(--border);
@@ -1099,8 +1148,6 @@
       .footer-links a:hover {
         color: var(--accent);
       }
-
-      /* Mobile Nav Toggle */
       .nav-toggle {
         display: none;
         background: none;
@@ -1114,8 +1161,6 @@
         cursor: none;
         font-size: 1.1rem;
       }
-
-      /* ===== ANIMATIONS ===== */
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -1210,52 +1255,6 @@
           transform: translate(2px, 0);
         }
       }
-      @keyframes scanline {
-        0% {
-          transform: translateY(-100%);
-        }
-        100% {
-          transform: translateY(100vh);
-        }
-      }
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Glitch effect on hero name */
-      .hero-name {
-        position: relative;
-      }
-      .hero-name::before,
-      .hero-name::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font-family: var(--font-display);
-        font-size: inherit;
-        line-height: 1;
-        opacity: 0;
-      }
-      .hero-name:hover::before {
-        animation: glitch 0.3s step-end 3;
-        opacity: 0.7;
-        color: var(--accent2);
-      }
-      .hero-name:hover::after {
-        animation: glitch 0.3s step-end 3 reverse;
-        opacity: 0.5;
-        color: #ff006e;
-      }
-
-      /* ===== SCROLL REVEAL ===== */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
@@ -1267,14 +1266,15 @@
         opacity: 1;
         transform: none;
       }
-
-      /* ===== RESPONSIVE ===== */
       @media (max-width: 1024px) {
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
         .resume-grid {
           grid-template-columns: 1fr;
+        }
+        .projects-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
       @media (max-width: 768px) {
@@ -1291,6 +1291,9 @@
           grid-template-columns: 1fr;
         }
         .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        .projects-grid {
           grid-template-columns: 1fr;
         }
         .hero-stats {
@@ -1323,16 +1326,11 @@
       }
     </style>
   </head>
-
   <body>
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursorRing"></div>
-
-    <!-- Canvas Background -->
     <canvas id="canvas-bg"></canvas>
 
-    <!-- HEADER -->
     <header id="header">
       <div class="container nav-inner">
         <a href="#hero" class="logo">MJR<span>.dev</span></a>
@@ -1341,11 +1339,12 @@
             <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#research">Research</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <button class="nav-toggle" id="navToggle">☰</button>
+        <button class="nav-toggle" id="navToggle">&#9776;</button>
       </div>
     </header>
 
@@ -1355,25 +1354,23 @@
         <div class="hero-grid">
           <div class="hero-content">
             <div class="hero-badge">
-              <span class="dot"></span>
-              Available for collaboration
+              <span class="dot"></span>Available for collaboration
             </div>
             <h1 class="hero-name" data-text="MOZES MARKUS SAPARI">
-              MOZES
-              <span class="accent-line">MARKUS SAPARI</span>
+              MOZES<span class="accent-line">MARKUS SAPARI</span>
             </h1>
             <div class="hero-title">
               <span id="typedText"></span><span class="cursor-blink"></span>
             </div>
             <p class="hero-desc">
-              DevOps Engineer with 5+ years of experience,
-              <strong>M.Cs student at UGM</strong>, and researcher at the
-              intersection of system reliability and AI. Building scalable,
-              automated, and intelligent systems.
+              DevOps Engineer &amp; Software Developer,
+              <strong>S2 MKOM student at UGM</strong>, and researcher at the
+              intersection of multimodal AI and system reliability. Building
+              scalable, containerized, and intelligent systems.
             </p>
             <div class="hero-cta">
-              <a href="#resume" class="btn-primary">
-                View Resume
+              <a href="#resume" class="btn-primary"
+                >View Resume
                 <svg
                   width="14"
                   height="14"
@@ -1382,19 +1379,18 @@
                   stroke="currentColor"
                   stroke-width="2"
                 >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-              <a href="#contact" class="btn-outline"> Get In Touch </a>
+                  <path d="M5 12h14M12 5l7 7-7 7" /></svg
+              ></a>
+              <a href="#contact" class="btn-outline">Get In Touch</a>
             </div>
             <div class="hero-stats">
               <div class="stat-item">
-                <span class="stat-num" data-count="5">0</span>
+                <span class="stat-num" data-count="3">0</span>
                 <div class="stat-label">Years Exp</div>
               </div>
               <div class="stat-item">
-                <span class="stat-num" data-count="3">0</span>
-                <div class="stat-label">GPA 3.79</div>
+                <span class="stat-num" data-count="23">0</span>
+                <div class="stat-label">Repos</div>
               </div>
               <div class="stat-item">
                 <span class="stat-num" data-count="10">0</span>
@@ -1402,7 +1398,6 @@
               </div>
             </div>
           </div>
-
           <div class="hero-visual">
             <div
               class="hero-card"
@@ -1416,7 +1411,7 @@
               </div>
               <div class="terminal-body">
                 <div class="terminal-line">
-                  <span class="t-prompt">❯</span>
+                  <span class="t-prompt">&#10095;</span>
                   <span class="t-cmd">cat profile.json</span>
                 </div>
                 <div class="terminal-line" style="margin-top: 0.5rem">
@@ -1428,18 +1423,22 @@
                 </div>
                 <div class="terminal-line">
                   &nbsp;&nbsp;<span class="t-key">"role"</span>:
-                  <span class="t-string">"DevOps & ML Researcher"</span>,
+                  <span class="t-string">"DevOps &amp; ML Researcher"</span>,
                 </div>
                 <div class="terminal-line">
                   &nbsp;&nbsp;<span class="t-key">"institution"</span>:
-                  <span class="t-string">"UGM"</span>,
+                  <span class="t-string">"S2 MKOM UGM"</span>,
+                </div>
+                <div class="terminal-line">
+                  &nbsp;&nbsp;<span class="t-key">"org"</span>:
+                  <span class="t-string">"Ketua HIMPASIKOM UGM"</span>,
                 </div>
                 <div class="terminal-line">
                   &nbsp;&nbsp;<span class="t-key">"research"</span>: [
                 </div>
                 <div class="terminal-line">
                   &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string"
-                    >"MiRAG Model"</span
+                    >"AM-RAG (Adaptive Multimodal)"</span
                   >,
                 </div>
                 <div class="terminal-line">
@@ -1449,8 +1448,8 @@
                 </div>
                 <div class="terminal-line">&nbsp;&nbsp;],</div>
                 <div class="terminal-line">
-                  &nbsp;&nbsp;<span class="t-key">"prev_company"</span>:
-                  <span class="t-string">"PERURI"</span>,
+                  &nbsp;&nbsp;<span class="t-key">"stack"</span>:
+                  <span class="t-string">"Golang Vue Docker Python"</span>,
                 </div>
                 <div class="terminal-line">
                   &nbsp;&nbsp;<span class="t-key">"motto"</span>:
@@ -1459,7 +1458,7 @@
                 <div class="terminal-line">
                   &nbsp;&nbsp;<span class="t-key">"status"</span>:
                   <span class="t-string" style="color: #00ff88"
-                    >✓ open_to_collab</span
+                    >&#10003; open_to_collab</span
                   >
                 </div>
                 <div class="terminal-line">
@@ -1469,7 +1468,7 @@
                   class="terminal-line"
                   style="margin-top: 0.75rem; color: rgba(0, 255, 179, 0.5)"
                 >
-                  <span class="t-prompt">❯</span>
+                  <span class="t-prompt">&#10095;</span>
                   <span style="opacity: 0.5">_</span>
                 </div>
               </div>
@@ -1490,7 +1489,7 @@
           <div class="section-label">Who I Am</div>
           <h2 class="section-title">ABOUT ME</h2>
           <p class="section-sub">
-            Bridging the gap between infrastructure reliability and AI research.
+            Bridging DevOps reliability with cutting-edge AI research.
           </p>
         </div>
         <div class="about-grid">
@@ -1499,7 +1498,7 @@
               <div class="about-photo-placeholder">
                 <img
                   src="/assets/img/Mozes-New.png"
-                  alt="Profile Mozes"
+                  alt="Mozes Sapari"
                   style="
                     width: 100%;
                     height: 100%;
@@ -1512,33 +1511,32 @@
                 />
               </div>
               <div class="about-location-tag">
-                <span class="dot"></span>
-                📍 Yogyakarta, Indonesia
+                <span class="dot"></span>&#128205; Yogyakarta, Indonesia
               </div>
             </div>
           </div>
           <div class="reveal">
             <p class="about-text">
-              I'm a seasoned <strong>DevOps Engineer</strong> with over 5 years
-              of hands-on experience in production environments, currently
-              pushing my boundaries as an
-              <span class="highlight">M.Cs student at UGM</span> — one of
-              Indonesia's top research universities.
+              I'm a
+              <strong>Software Developer &amp; DevOps Engineer</strong> with 3+
+              years of hands-on experience in full-stack development and
+              containerized infrastructure, currently advancing as an
+              <span class="highlight">S2 MKOM student at UGM</span> —
+              Indonesia's top research university.
             </p>
             <p class="about-text">
-              Previously at <strong>PERURI</strong> (Republic of Indonesia Money
-              Printing Company), I engineered high-availability systems and
-              mastered monitoring stacks including
-              <span class="highlight">Prometheus, Grafana, AppDynamics</span>,
-              and Elasticsearch. Every system I touch, I make more reliable,
-              observable, and automated.
+              I serve as <strong>Ketua HIMPASIKOM UGM</strong> (Chairman of
+              Postgraduate CS Student Organization). My engineering stack spans
+              <span class="highlight"
+                >Golang, Node.js, Vue.js/Quasar, Laravel, Python</span
+              >, and production-grade containerization with Docker and HPC GPU
+              clusters (NVIDIA A100/RTX series).
             </p>
             <p class="about-text">
-              My current research focus sits at the fascinating intersection of
-              AI and data quality — specifically
-              <strong>MiRAG model replication</strong> and
-              <strong>Outlier Detection</strong>, with the goal of Q2/Q3
-              international journal publications.
+              My current research focuses on
+              <strong>Adaptive Multimodal RAG (AM-RAG)</strong> and
+              <strong>Outlier Detection</strong> in high-dimensional ML
+              pipelines — targeting international journal publications.
             </p>
             <div class="about-motto">
               <p>"No Coding No Life"</p>
@@ -1547,11 +1545,11 @@
             <div class="about-info-grid">
               <div class="about-info-item">
                 <div class="info-label">Status</div>
-                <div class="info-val">M.Cs Student @ UGM</div>
+                <div class="info-val">S2 MKOM @ UGM</div>
               </div>
               <div class="about-info-item">
-                <div class="info-label">Experience</div>
-                <div class="info-val">5+ Years in IT Ops</div>
+                <div class="info-label">Organization</div>
+                <div class="info-val">Ketua HIMPASIKOM UGM</div>
               </div>
               <div class="about-info-item">
                 <div class="info-label">Email</div>
@@ -1560,8 +1558,8 @@
                 </div>
               </div>
               <div class="about-info-item">
-                <div class="info-label">GPA (S1)</div>
-                <div class="info-val">3.79 / 4.00</div>
+                <div class="info-label">GitHub</div>
+                <div class="info-val">github.com/MozesJr</div>
               </div>
             </div>
           </div>
@@ -1596,33 +1594,30 @@
             <div class="timeline">
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-period">2025 — PRESENT</div>
+                <div class="timeline-period">2023 — PRESENT</div>
                 <div class="timeline-role">
-                  Master of Computer Science (M.Cs)
+                  Magister Ilmu Komputer (S2 MKOM)
                 </div>
                 <div class="timeline-company">
                   Universitas Gadjah Mada (UGM) · Yogyakarta
                 </div>
                 <div class="timeline-tags">
-                  <span class="tag">Machine Learning</span>
-                  <span class="tag">MiRAG Research</span>
-                  <span class="tag">Outlier Detection</span>
-                  <span class="tag accent">Q2/Q3 Publication</span>
+                  <span class="tag">Advanced ML</span
+                  ><span class="tag">AM-RAG Research</span
+                  ><span class="tag">Outlier Detection</span
+                  ><span class="tag">HPC GPU Cluster</span
+                  ><span class="tag accent">Int'l Publication Target</span>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-period">2017 — 2021</div>
-                <div class="timeline-role">
-                  Bachelor of Informatics Engineering
-                </div>
-                <div class="timeline-company">
-                  Universitas Papua (UNIPA) · GPA 3.79
-                </div>
+                <div class="timeline-period">2019 — 2023</div>
+                <div class="timeline-role">S1 Teknik Informatika</div>
+                <div class="timeline-company">Universitas Papua (UNIPA)</div>
                 <div class="timeline-tags">
-                  <span class="tag">Summa Cum Laude</span>
-                  <span class="tag">Gemastik 13</span>
-                  <span class="tag">Cyber Security</span>
+                  <span class="tag">Teknik Informatika</span
+                  ><span class="tag">Web Development</span
+                  ><span class="tag">Network Engineering</span>
                 </div>
               </div>
             </div>
@@ -1632,33 +1627,44 @@
             <div class="timeline">
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <div class="timeline-period">2022 — 2024</div>
-                <div class="timeline-role">
-                  Application Support & DevOps Engineer
-                </div>
+                <div class="timeline-period">2024 — PRESENT</div>
+                <div class="timeline-role">Ketua HIMPASIKOM UGM</div>
                 <div class="timeline-company">
-                  PERURI · Republic of Indonesia Money Printing Co.
+                  Organisasi Mahasiswa Pascasarjana Ilmu Komputer · UGM
                 </div>
                 <div class="timeline-tags">
-                  <span class="tag">Prometheus</span>
-                  <span class="tag">Grafana</span>
-                  <span class="tag">AppDynamics</span>
-                  <span class="tag">CI/CD</span>
-                  <span class="tag">ELK Stack</span>
+                  <span class="tag">Leadership</span
+                  ><span class="tag">Academic Events</span
+                  ><span class="tag">Research Coordination</span>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2023 — PRESENT</div>
+                <div class="timeline-role">
+                  Software Developer &amp; DevOps Engineer
+                </div>
+                <div class="timeline-company">
+                  Full-Stack Development · Containerized Infrastructure
+                </div>
+                <div class="timeline-tags">
+                  <span class="tag">Golang</span><span class="tag">Node.js</span
+                  ><span class="tag">Docker</span><span class="tag">Vue.js</span
+                  ><span class="tag">Laravel</span
+                  ><span class="tag">NVIDIA A100/RTX</span>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-period">2020 — 2022</div>
                 <div class="timeline-role">
-                  Web Developer & Network Engineer
+                  Web Developer &amp; Network Engineer
                 </div>
                 <div class="timeline-company">Universitas Papua (UNIPA)</div>
                 <div class="timeline-tags">
-                  <span class="tag">Laravel</span>
-                  <span class="tag">SIPPM</span>
-                  <span class="tag">E-SPMI</span>
-                  <span class="tag">Network Infra</span>
+                  <span class="tag">Laravel</span><span class="tag">SIPPM</span
+                  ><span class="tag">E-SPMI</span
+                  ><span class="tag">Network Infra</span>
                 </div>
               </div>
             </div>
@@ -1682,108 +1688,418 @@
             class="skill-card"
             style="--card-color: #00ffb3; transition-delay: 0.1s"
           >
-            <div class="skill-icon">☁️</div>
-            <div class="skill-name">DevOps & Infrastructure</div>
+            <div class="skill-icon">&#128051;</div>
+            <div class="skill-name">DevOps &amp; Infrastructure</div>
             <div class="skill-desc">
-              Building and maintaining production-grade CI/CD pipelines and
-              containerized deployments.
+              Production-grade containerized deployments and CI/CD pipelines
+              with GPU cluster support.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">Docker</span>
-              <span class="tech-chip">CI/CD</span>
-              <span class="tech-chip">Nginx</span>
-              <span class="tech-chip">Laravel Valet</span>
-              <span class="tech-chip">VMs</span>
+              <span class="tech-chip">Docker</span
+              ><span class="tech-chip">Git</span
+              ><span class="tech-chip">CI/CD</span
+              ><span class="tech-chip">HPC</span
+              ><span class="tech-chip">NVIDIA A100</span>
             </div>
           </div>
           <div
             class="skill-card"
             style="--card-color: #00d4ff; transition-delay: 0.2s"
           >
-            <div class="skill-icon">📊</div>
-            <div class="skill-name">Monitoring & Observability</div>
+            <div class="skill-icon">&#9881;&#65039;</div>
+            <div class="skill-name">Backend Development</div>
             <div class="skill-desc">
-              End-to-end system observability — metrics, logs, traces, and
-              alerts at scale.
+              High-performance backends and REST APIs with modern Go and Node.js
+              ecosystems.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">Prometheus</span>
-              <span class="tech-chip">Grafana</span>
-              <span class="tech-chip">AppDynamics</span>
-              <span class="tech-chip">Elasticsearch</span>
-              <span class="tech-chip">Kibana</span>
+              <span class="tech-chip">Golang</span
+              ><span class="tech-chip">Node.js</span
+              ><span class="tech-chip">Laravel</span
+              ><span class="tech-chip">CodeIgniter</span
+              ><span class="tech-chip">Python</span>
             </div>
           </div>
           <div
             class="skill-card"
             style="--card-color: #a78bfa; transition-delay: 0.3s"
           >
-            <div class="skill-icon">🧠</div>
-            <div class="skill-name">Machine Learning</div>
+            <div class="skill-icon">&#129504;</div>
+            <div class="skill-name">Machine Learning &amp; AI</div>
             <div class="skill-desc">
-              Research-grade ML — from model replication to outlier detection
-              algorithms.
+              Research-grade ML — Adaptive Multimodal RAG, Outlier Detection,
+              and Image Processing.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">Python</span>
-              <span class="tech-chip">MiRAG</span>
-              <span class="tech-chip">Outlier Detection</span>
-              <span class="tech-chip">PyTorch</span>
-              <span class="tech-chip">Pandas</span>
+              <span class="tech-chip">Python</span
+              ><span class="tech-chip">AM-RAG</span
+              ><span class="tech-chip">Outlier Detection</span
+              ><span class="tech-chip">XGBoost</span
+              ><span class="tech-chip">Random Forest</span>
             </div>
           </div>
           <div
             class="skill-card"
             style="--card-color: #fb923c; transition-delay: 0.15s"
           >
-            <div class="skill-icon">💻</div>
-            <div class="skill-name">Web Development</div>
+            <div class="skill-icon">&#128444;&#65039;</div>
+            <div class="skill-name">Frontend Development</div>
             <div class="skill-desc">
-              Full-stack development with modern PHP and JavaScript frameworks.
+              Modern, reactive UIs with Vue.js ecosystem and component-driven
+              architecture.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">Laravel</span>
-              <span class="tech-chip">Vue.js</span>
-              <span class="tech-chip">Node.js</span>
-              <span class="tech-chip">CodeIgniter</span>
-              <span class="tech-chip">Auth0</span>
+              <span class="tech-chip">Vue.js</span
+              ><span class="tech-chip">Quasar</span
+              ><span class="tech-chip">React.js</span
+              ><span class="tech-chip">JavaScript</span>
             </div>
           </div>
           <div
             class="skill-card"
             style="--card-color: #f472b6; transition-delay: 0.25s"
           >
-            <div class="skill-icon">🗃️</div>
-            <div class="skill-name">Databases</div>
+            <div class="skill-icon">&#128300;</div>
+            <div class="skill-name">Image Processing</div>
             <div class="skill-desc">
-              Designing and optimizing relational and document databases for
-              production workloads.
+              Digital image analysis — Histogram Equalization, segmentation, and
+              object detection.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">PostgreSQL</span>
-              <span class="tech-chip">MySQL</span>
-              <span class="tech-chip">MongoDB</span>
-              <span class="tech-chip">SQL Server</span>
-              <span class="tech-chip">Firebase</span>
+              <span class="tech-chip">OpenCV</span
+              ><span class="tech-chip">HE / AHE / CLAHE</span
+              ><span class="tech-chip">Segmentation</span
+              ><span class="tech-chip">NumPy</span>
             </div>
           </div>
           <div
             class="skill-card"
             style="--card-color: #34d399; transition-delay: 0.35s"
           >
-            <div class="skill-icon">🔐</div>
-            <div class="skill-name">Cyber Security</div>
+            <div class="skill-icon">&#128451;&#65039;</div>
+            <div class="skill-name">Databases</div>
             <div class="skill-desc">
-              Certified security practitioner with experience in authentication
-              protocols and SSO.
+              Designing and optimizing relational and document databases for
+              production workloads.
             </div>
             <div class="skill-tech-list">
-              <span class="tech-chip">CSCU Certified</span>
-              <span class="tech-chip">OAuth</span>
-              <span class="tech-chip">SSO</span>
-              <span class="tech-chip">HMAC</span>
-              <span class="tech-chip">Keycloak</span>
+              <span class="tech-chip">MySQL</span
+              ><span class="tech-chip">PostgreSQL</span
+              ><span class="tech-chip">MongoDB</span
+              ><span class="tech-chip">Firebase</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section
+      class="section"
+      id="projects"
+      style="
+        background: linear-gradient(
+          180deg,
+          var(--bg) 0%,
+          var(--bg2) 50%,
+          var(--bg) 100%
+        );
+      "
+    >
+      <div class="container">
+        <div class="reveal">
+          <div class="section-label">Open Source</div>
+          <h2 class="section-title">PROJECTS</h2>
+          <p class="section-sub">
+            From ML research implementations to production full-stack apps.
+          </p>
+        </div>
+        <div class="projects-filter reveal">
+          <button
+            class="filter-btn active"
+            onclick="filterProjects('all', this)"
+          >
+            All
+          </button>
+          <button class="filter-btn" onclick="filterProjects('ml', this)">
+            ML / AI
+          </button>
+          <button
+            class="filter-btn"
+            onclick="filterProjects('fullstack', this)"
+          >
+            Full-Stack
+          </button>
+          <button class="filter-btn" onclick="filterProjects('devops', this)">
+            DevOps
+          </button>
+        </div>
+        <div class="projects-grid" id="projectsGrid">
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#128300;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/HistogramEqualization-HE-"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Histogram Equalization</div>
+            <div class="project-desc">
+              Implementasi HE, AHE, dan CLAHE untuk meningkatkan kualitas citra
+              digital. Manual implementation.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#129302;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Algoritma-Model-Bagging-dan-XGBoost"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Bagging &amp; XGBoost</div>
+            <div class="project-desc">
+              Ensemble models — Random Forest (Bagging) dan XGBoost dengan
+              evaluasi perbandingan performa.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#127795;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/DecisionTree"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Decision Tree Regression</div>
+            <div class="project-desc">
+              Manual implementation Decision Tree Regression dari scratch — deep
+              understanding tanpa sklearn abstraction.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#129530;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Segmentasi_darah"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Blood Cell Segmentation</div>
+            <div class="project-desc">
+              Segmentasi sel darah merah menggunakan teknik image processing
+              untuk analisis medis.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#128202;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/BI-Covid19"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">BI Covid-19 Dashboard</div>
+            <div class="project-desc">
+              Business Intelligence dashboard dengan visualisasi data Covid-19
+              untuk analisis tren dan statistik.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="ml">
+            <div class="project-card-top">
+              <span class="project-icon">&#127807;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Pengolahan-Citra-Digital-untuk-Deteksi-Daun"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Leaf Detection</div>
+            <div class="project-desc">
+              Pengolahan citra digital untuk deteksi dan klasifikasi daun
+              menggunakan teknik segmentasi.
+            </div>
+            <div class="project-lang">Python</div>
+          </div>
+          <div class="project-card" data-cat="devops">
+            <div class="project-card-top">
+              <span class="project-icon">&#127959;&#65039;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/MajuUMKM"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">MajuUMKM</div>
+            <div class="project-desc">
+              Final project S2 PPL — platform UMKM fully containerized dengan
+              Docker. Arsitektur microservice.
+            </div>
+            <div class="project-lang">Dockerfile</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#129513;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/modular-universal-bms"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Modular Universal BMS</div>
+            <div class="project-desc">
+              Project Capstone DIKE 2026 — sistem manajemen modular dan scalable
+              berbasis Vue.js.
+            </div>
+            <div class="project-lang">Vue</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#128184;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Finance-Dashboard"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Finance Dashboard x Telegram</div>
+            <div class="project-desc">
+              Dashboard keuangan personal terintegrasi dengan Telegram bot untuk
+              notifikasi dan input transaksi real-time.
+            </div>
+            <div class="project-lang">JavaScript</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#9883;&#65039;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Laravel-reactJS"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Laravel + ReactJS CRUD</div>
+            <div class="project-desc">
+              Full-stack CRUD — backend Laravel REST API dan frontend ReactJS.
+              Decoupled architecture.
+            </div>
+            <div class="project-lang">JavaScript</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#127978;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/triagle-pos"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Triangle POS &#11088;</div>
+            <div class="project-desc">
+              Aplikasi kasir open source berbasis Laravel Blade. Fitur manajemen
+              produk, transaksi, dan laporan penjualan.
+            </div>
+            <div class="project-lang">Blade / PHP</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#127760;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/webFTPP"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Web FTPP</div>
+            <div class="project-desc">
+              Website resmi Fakultas Teknik Pertambangan dan Perminyakan —
+              responsif dan modern dengan Vue.js.
+            </div>
+            <div class="project-lang">Vue</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#128260;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/CRUD-FE-BE-JS"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">CRUD FE-BE JS</div>
+            <div class="project-desc">
+              Full-stack CRUD dengan Vue.js frontend dan Node.js backend. Clean
+              decoupled architecture.
+            </div>
+            <div class="project-lang">Vue / Node.js</div>
+          </div>
+          <div class="project-card" data-cat="fullstack">
+            <div class="project-card-top">
+              <span class="project-icon">&#128221;</span>
+              <div class="project-links">
+                <a
+                  href="https://github.com/MozesJr/Template-Latex-Laporan-Tesis"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub &#8599;</a
+                >
+              </div>
+            </div>
+            <div class="project-name">Template LaTeX Tesis UGM</div>
+            <div class="project-desc">
+              Template LaTeX laporan tesis resmi UGM 2026. Siap pakai untuk
+              mahasiswa S2/S3 dengan formatting standar.
+            </div>
+            <div class="project-lang">LaTeX / TeX</div>
           </div>
         </div>
       </div>
@@ -1799,49 +2115,38 @@
         </div>
         <div class="research-card reveal">
           <div class="research-badge">
-            <span>🔬</span>
-            Active Research · UGM M.Cs Program
+            <span>&#128300;</span>Active Research · S2 MKOM UGM
           </div>
           <div class="research-title">
-            MiRAG Model Replication & Outlier Detection
+            Adaptive Multimodal RAG (AM-RAG) &amp; Outlier Detection
           </div>
           <p class="research-desc">
-            Currently focused on replicating and stress-testing the limitations
-            of the
-            <strong
-              >MiRAG (Mixed-Information Retrieval-Augmented Generation)
-              model</strong
-            >
-            in real-world scenarios. Simultaneously investigating novel
+            Currently conducting research on
+            <strong>Adaptive Multimodal RAG (AM-RAG)</strong> — an advanced
+            Retrieval-Augmented Generation architecture that adaptively handles
+            multiple modalities (text, image, structured data) for more robust
+            and context-aware AI responses. Simultaneously investigating novel
             <strong>Outlier Detection</strong> methodologies to improve data
-            quality in high-dimensional machine learning pipelines. Research
-            targets publication in
-            <strong>Q2/Q3 international scientific journals</strong>.
+            quality in high-dimensional ML pipelines, leveraging the NVIDIA
+            A100/RTX GPU cluster at UGM. Research targets publication in
+            <strong>international scientific journals</strong>.
           </p>
           <div class="research-meta">
+            <div class="meta-item"><strong>AM-RAG</strong>Primary Research</div>
             <div class="meta-item">
-              <strong>MiRAG</strong>
-              Primary Research
+              <strong>Outlier Detection</strong>Secondary Research
             </div>
             <div class="meta-item">
-              <strong>Outlier Detection</strong>
-              Secondary Research
+              <strong>HPC GPU</strong>A100 / RTX Series
             </div>
-            <div class="meta-item">
-              <strong>Q2/Q3</strong>
-              Target Publication
-            </div>
-            <div class="meta-item">
-              <strong>UGM 2025</strong>
-              Started
-            </div>
+            <div class="meta-item"><strong>UGM 2023</strong>Started</div>
           </div>
           <div class="timeline-tags" style="margin-top: 1.75rem">
-            <span class="tag">Python</span>
-            <span class="tag">Transformers</span>
-            <span class="tag">RAG</span>
-            <span class="tag">Anomaly Detection</span>
-            <span class="tag accent">International Publication</span>
+            <span class="tag">Python</span><span class="tag">Transformers</span
+            ><span class="tag">Multimodal RAG</span
+            ><span class="tag">Anomaly Detection</span
+            ><span class="tag">HPC</span
+            ><span class="tag accent">International Publication</span>
           </div>
         </div>
       </div>
@@ -1865,39 +2170,37 @@
         <div class="contact-grid">
           <div class="reveal">
             <div class="contact-info-list">
-              <a href="mailto:mozessapari@gmail.com" class="contact-item">
-                <div class="contact-icon">📧</div>
+              <a href="mailto:mozessapari@gmail.com" class="contact-item"
+                ><div class="contact-icon">&#128231;</div>
                 <div>
                   <div class="contact-item-label">Email</div>
                   <div class="contact-item-val">mozessapari@gmail.com</div>
-                </div>
-              </a>
+                </div></a
+              >
               <a
                 href="https://linkedin.com/in/mozessapari"
                 target="_blank"
                 class="contact-item"
-              >
-                <div class="contact-icon">💼</div>
+                ><div class="contact-icon">&#128188;</div>
                 <div>
                   <div class="contact-item-label">LinkedIn</div>
                   <div class="contact-item-val">
                     linkedin.com/in/mozessapari
                   </div>
-                </div>
-              </a>
+                </div></a
+              >
               <a
                 href="https://github.com/MozesJr"
                 target="_blank"
                 class="contact-item"
-              >
-                <div class="contact-icon">🐙</div>
+                ><div class="contact-icon">&#128025;</div>
                 <div>
                   <div class="contact-item-label">GitHub</div>
                   <div class="contact-item-val">github.com/MozesJr</div>
-                </div>
-              </a>
+                </div></a
+              >
               <div class="contact-item" style="cursor: default">
-                <div class="contact-icon">📍</div>
+                <div class="contact-icon">&#128205;</div>
                 <div>
                   <div class="contact-item-label">Location</div>
                   <div class="contact-item-val">Yogyakarta, Indonesia</div>
@@ -1909,8 +2212,8 @@
             <form class="contact-form" onsubmit="handleForm(event)">
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Name</label>
-                  <input
+                  <label class="form-label">Name</label
+                  ><input
                     type="text"
                     class="form-control"
                     placeholder="Your name"
@@ -1918,8 +2221,8 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Email</label>
-                  <input
+                  <label class="form-label">Email</label
+                  ><input
                     type="email"
                     class="form-control"
                     placeholder="your@email.com"
@@ -1928,16 +2231,16 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Subject</label>
-                <input
+                <label class="form-label">Subject</label
+                ><input
                   type="text"
                   class="form-control"
-                  placeholder="DevOps / Research / Other"
+                  placeholder="DevOps / Research / Collaboration"
                 />
               </div>
               <div class="form-group">
-                <label class="form-label">Message</label>
-                <textarea
+                <label class="form-label">Message</label
+                ><textarea
                   class="form-control"
                   placeholder="Tell me what you have in mind..."
                 ></textarea>
@@ -1961,11 +2264,10 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
       <div class="container footer-inner">
         <div class="footer-copy">
-          © 2026 <span>Mozes Markus Sapari</span> · No Coding No Life
+          &#169; 2026 <span>Mozes Markus Sapari</span> · No Coding No Life
         </div>
         <div class="footer-links">
           <a href="https://linkedin.com/in/mozessapari" target="_blank"
@@ -1978,21 +2280,18 @@
     </footer>
 
     <script>
-      /* ===== CUSTOM CURSOR ===== */
-      const cursor = document.getElementById("cursor");
-      const cursorRing = document.getElementById("cursorRing");
+      const cursor = document.getElementById("cursor"),
+        cursorRing = document.getElementById("cursorRing");
       let mx = 0,
         my = 0,
         cx = 0,
         cy = 0;
-
       document.addEventListener("mousemove", (e) => {
         mx = e.clientX;
         my = e.clientY;
         cursor.style.left = mx + "px";
         cursor.style.top = my + "px";
       });
-
       function animRing() {
         cx += (mx - cx) * 0.12;
         cy += (my - cy) * 0.12;
@@ -2001,9 +2300,8 @@
         requestAnimationFrame(animRing);
       }
       animRing();
-
       document
-        .querySelectorAll("a, button, .skill-card, .contact-item")
+        .querySelectorAll("a,button,.skill-card,.contact-item,.project-card")
         .forEach((el) => {
           el.addEventListener("mouseenter", () => {
             cursor.style.transform = "translate(-50%,-50%) scale(1.8)";
@@ -2016,21 +2314,17 @@
             cursorRing.style.height = "36px";
           });
         });
-
-      /* ===== CANVAS PARTICLE GRID ===== */
-      const canvas = document.getElementById("canvas-bg");
-      const ctx = canvas.getContext("2d");
+      const canvas = document.getElementById("canvas-bg"),
+        ctx = canvas.getContext("2d");
       let W,
         H,
         particles = [];
-
       function resize() {
         W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
       }
       resize();
       window.addEventListener("resize", resize);
-
       class Particle {
         constructor() {
           this.reset();
@@ -2052,71 +2346,63 @@
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0,255,179,${this.alpha})`;
+          ctx.fillStyle = "rgba(0,255,179," + this.alpha + ")";
           ctx.fill();
         }
       }
-
       for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-      function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
+      function drawConn() {
+        for (let i = 0; i < particles.length; i++)
           for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const d = Math.sqrt(dx * dx + dy * dy);
+            const dx = particles[i].x - particles[j].x,
+              dy = particles[i].y - particles[j].y,
+              d = Math.sqrt(dx * dx + dy * dy);
             if (d < 120) {
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(0,255,179,${0.07 * (1 - d / 120)})`;
+              ctx.strokeStyle = "rgba(0,255,179," + 0.07 * (1 - d / 120) + ")";
               ctx.lineWidth = 0.5;
               ctx.stroke();
             }
           }
-        }
       }
-
       function animCanvas() {
         ctx.clearRect(0, 0, W, H);
         particles.forEach((p) => {
           p.update();
           p.draw();
         });
-        drawConnections();
+        drawConn();
         requestAnimationFrame(animCanvas);
       }
       animCanvas();
-
-      /* ===== HEADER SCROLL ===== */
       const header = document.getElementById("header");
-      window.addEventListener("scroll", () => {
-        header.classList.toggle("scrolled", window.scrollY > 50);
-      });
-
-      /* ===== TYPEWRITER ===== */
+      window.addEventListener("scroll", () =>
+        header.classList.toggle("scrolled", window.scrollY > 50),
+      );
       const titles = [
         "DevOps Engineer_",
         "ML Researcher_",
         "Full Stack Developer_",
-        "M.Cs Student @ UGM_",
+        "Ketua HIMPASIKOM UGM_",
+        "S2 MKOM @ UGM_",
       ];
       let ti = 0,
         ci = 0,
         deleting = false;
       const typedEl = document.getElementById("typedText");
-
       function type() {
-        const current = titles[ti];
+        const cur = titles[ti];
         if (!deleting) {
-          typedEl.textContent = current.slice(0, ci++);
-          if (ci > current.length) {
+          typedEl.textContent = cur.slice(0, ci++);
+          if (ci > cur.length) {
             deleting = true;
             setTimeout(type, 1800);
             return;
           }
         } else {
-          typedEl.textContent = current.slice(0, ci--);
+          typedEl.textContent = cur.slice(0, ci--);
           if (ci < 0) {
             deleting = false;
             ti = (ti + 1) % titles.length;
@@ -2126,65 +2412,73 @@
         setTimeout(type, deleting ? 50 : 80);
       }
       type();
-
-      /* ===== COUNTER ANIMATION ===== */
-      const counters = document.querySelectorAll("[data-count]");
-      const countLabels = { 5: "5+", 3: "3.79", 10: "10+" };
-      counters.forEach((el) => {
-        const target = parseInt(el.dataset.count);
-        const label = countLabels[target] || target + "+";
-        let start = 0;
+      const counterLabels = { 3: "3+", 23: "23", 10: "10+" };
+      document.querySelectorAll("[data-count]").forEach((el) => {
+        const target = parseInt(el.dataset.count),
+          label = counterLabels[target] || target + "+";
+        let s = 0;
         const step = () => {
-          start++;
-          if (start >= target) {
+          s++;
+          if (s >= target) {
             el.textContent = label;
             return;
           }
-          el.textContent = start + "+";
-          setTimeout(step, 80);
+          el.textContent = s + "+";
+          setTimeout(step, 60);
         };
         setTimeout(step, 1200);
       });
-
-      /* ===== SCROLL REVEAL ===== */
       const observer = new IntersectionObserver(
-        (entries) => {
+        (entries) =>
           entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-            }
-          });
-        },
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
         { threshold: 0.1 },
       );
-
       document
-        .querySelectorAll(".reveal, .skill-card, .timeline-item")
+        .querySelectorAll(".reveal,.skill-card,.timeline-item,.project-card")
         .forEach((el) => observer.observe(el));
-
-      /* ===== MOBILE NAV ===== */
-      const navToggle = document.getElementById("navToggle");
-      const navLinks = document.getElementById("navLinks");
+      function filterProjects(cat, btn) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".project-card").forEach((card) => {
+          const show = cat === "all" || card.dataset.cat === cat;
+          card.style.display = show ? "flex" : "none";
+          if (show) {
+            card.classList.remove("visible");
+            setTimeout(() => card.classList.add("visible"), 50);
+          }
+        });
+      }
+      document
+        .querySelectorAll(".project-card")
+        .forEach((c) => (c.style.display = "flex"));
+      const navToggle = document.getElementById("navToggle"),
+        navLinks = document.getElementById("navLinks");
       navToggle.addEventListener("click", () => {
         const open = navLinks.style.display === "flex";
         navLinks.style.display = open ? "none" : "flex";
-        navLinks.style.flexDirection = "column";
-        navLinks.style.position = "absolute";
-        navLinks.style.top = "60px";
-        navLinks.style.right = "1rem";
-        navLinks.style.background = "rgba(5,10,14,0.97)";
-        navLinks.style.backdropFilter = "blur(20px)";
-        navLinks.style.border = "1px solid rgba(0,255,179,0.15)";
-        navLinks.style.borderRadius = "10px";
-        navLinks.style.padding = "1rem";
-        navLinks.style.gap = "1.2rem";
+        if (!open) {
+          Object.assign(navLinks.style, {
+            flexDirection: "column",
+            position: "absolute",
+            top: "60px",
+            right: "1rem",
+            background: "rgba(5,10,14,0.97)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(0,255,179,0.15)",
+            borderRadius: "10px",
+            padding: "1rem",
+            gap: "1.2rem",
+          });
+        }
       });
-
-      /* ===== FORM HANDLER ===== */
       function handleForm(e) {
         e.preventDefault();
         const btn = e.target.querySelector(".btn-send");
-        btn.textContent = "Message Sent ✓";
+        btn.textContent = "Message Sent \u2713";
         btn.style.background = "#00ff88";
         setTimeout(() => {
           btn.innerHTML =
@@ -2192,18 +2486,16 @@
           btn.style.background = "var(--accent)";
         }, 3000);
       }
-
-      /* ===== SMOOTH ACTIVE NAV ===== */
-      const sections = document.querySelectorAll("section[id]");
-      const navAs = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll("section[id]"),
+        navAs = document.querySelectorAll("nav a");
       window.addEventListener("scroll", () => {
-        let current = "";
+        let cur = "";
         sections.forEach((s) => {
-          if (window.scrollY >= s.offsetTop - 200) current = s.id;
+          if (window.scrollY >= s.offsetTop - 200) cur = s.id;
         });
         navAs.forEach((a) => {
           a.style.color =
-            a.getAttribute("href") === "#" + current ? "var(--accent)" : "";
+            a.getAttribute("href") === "#" + cur ? "var(--accent)" : "";
         });
       });
     </script>
